@@ -37,6 +37,10 @@ pub struct BundlerArgs {
     #[clap(long)]
     pub mnemonic_file: PathBuf,
 
+    /// Path to the keystore file.
+    #[clap(long)]
+    pub keystore_file: PathBuf,
+
     /// The bundler beneficiary address.
     #[clap(long, value_parser=parse_address)]
     pub beneficiary: Address,

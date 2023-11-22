@@ -106,6 +106,19 @@ impl Wallet {
             })
         }
     }
+    pub fn from_keystore_file(
+        path: ExpandedPathBuf,
+        chain_id: &U256,
+        _flashbots_key: bool,
+    ) -> eyre::Result<Self> {
+        let password = rpassword::prompt_password("input bundler password: ").unwrap();
+        let wallet = ethers::signers::Wallet::<ethers::prelude::k256::ecdsa::SigningKey>::decrypt_keystore(&path, &password)?;
+
+        Ok(Self {
+            signer: wallet.with_chain_id(chain_id.as_u64()),
+            flashbots_signer: None,
+        })
+    }
 
     /// Create a new wallet from the given mnemonic phrase
     /// if `flashbots_key` is true, then a Flashbots key is also created, otherwise it is set to None

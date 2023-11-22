@@ -19,6 +19,7 @@ expanded-pathbuf = { workspace = true }
 eyre = { workspace = true }
 futures-util = { workspace = true }
 lazy_static = { workspace = true }
+rpassword = "7.3.1"
 rustc-hex = "^2.0.1"
 serde = "1"
 serde-hex = "0.1.0"

@@ -99,7 +99,9 @@ where
         info!("Wallet Signer {:?}", wallet.signer);
         info!("Flashbots Signer {:?}", wallet.flashbots_signer);
     } else {
-        wallet = Wallet::from_file(args.mnemonic_file.into(), &chain_id, false)
+        //wallet = Wallet::from_file(args.mnemonic_file.into(), &chain_id, false)
+        //    .map_err(|error| eyre::format_err!("Could not load mnemonic file: {}", error))?;
+        wallet = Wallet::from_keystore_file(args.keystore_file.into(), &chain_id, false)
             .map_err(|error| eyre::format_err!("Could not load mnemonic file: {}", error))?;
         info!("{:?}", wallet.signer);
     }
